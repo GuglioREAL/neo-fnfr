@@ -3,6 +3,8 @@
 
 Friday Night Funkin' Rewritten is a rewrite of [Friday Night Funkin'](https://ninja-muffin24.itch.io/funkin) built on [LÖVE](https://love2d.org/) and [LÖVE Potion](https://github.com/lovebrew/LovePotion) for Windows, macOS, Linux, and Web platforms, as well as previously unsupported platforms, like the Nintendo Switch!
 
+IF YOU WANT TO USE DDS FILE COMPRESSION THEN RUN THE TOOL IN `./src/`
+
 ## Features
 
 Friday Night Funkin' Rewritten features:
@@ -12,7 +14,7 @@ Friday Night Funkin' Rewritten features:
 * Other cool features, like downscroll
 * And more to come!
 
-Other features added in this mod
+### Other features added in this mod
 
 * DFJK Setting
 * Middle Scroll
