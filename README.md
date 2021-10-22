@@ -7,7 +7,7 @@ IF YOU WANT TO USE DDS FILE COMPRESSION THEN RUN THE TOOL IN `./src/`
 
 ## Features
 
-Friday Night Funkin' Rewritten features:
+### Friday Night Funkin' Rewritten features:
 * A rewritten engine focused on performance and playability
 * Much less memory usage than the original game
 * Controller support
