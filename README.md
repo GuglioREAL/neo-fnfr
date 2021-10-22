@@ -44,7 +44,7 @@ If using a controller on a PC, a controller with an Xbox button layout is recomm
 
 ## Game
 ### Keyboard
-* WASD/Arrow Keys - Arrows
+* WASD/Arrow Keys/DFJK (if setting is on) - Arrows
 * Enter - Confirm (Game Over)
 * Escape - Exit
 
@@ -69,7 +69,7 @@ The settings file can be found in the following places on the following systems:
 * Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
 * Nintendo Switch - `/switch/funkin-rewritten-switch/save/settings.ini`
 
-# Progress
+# FNFR Progress
 **Menus** - 50% Complete
 * A proper menu has not been implemented yet. For now, a placeholder menu has been implemented.
 
