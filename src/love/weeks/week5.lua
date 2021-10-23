@@ -64,6 +64,8 @@ return {
 		buildings.y = -100
 		girlfriend = love.filesystem.load("sprites/gf.lua")()
 		boyfriend = love.filesystem.load("sprites/bf.lua")()
+		fakeboyfriend = love.filesystem.load("sprites/bf.lua")()
+
 		--boyfriend.x, boyfriend.y = 275, 110
 		boyfriend.x, boyfriend.y = 425, 400
 		--boyfriend = love.filesystem.load("sprites/week5/bfDream.lua")() -- i swear to fucking god I keep forgeting the week5 part
