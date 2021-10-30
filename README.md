@@ -59,17 +59,17 @@ If using a controller on a PC, a controller with an Xbox button layout is recomm
 ### Keyboard
 * 6 - Take screenshot
   * Screenshot paths:
-    * Windows - `%APPDATA%\funkin-rewritten\screenshots`
-    * macOS - `~/Library/Application Support/funkin-rewritten/screenshots`
-	* Linux - `~/.local/share/love/funkin-rewritten/screenshots`
+    * Windows - `%APPDATA%\neo-fnfr\screenshots`
+    * macOS - `~/Library/Application Support/neo-fnfr/screenshots`
+	* Linux - `~/.local/share/love/neo-fnfr/screenshots`
 * 7 - Open debug menu
 
 # Settings
 The settings file can be found in the following places on the following systems:
-* Windows - `%APPDATA%\funkin-rewritten\settings.ini`
-* macOS - `~/Library/Application Support/funkin-rewritten/settings.ini`
-* Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
-* Nintendo Switch - `/switch/funkin-rewritten-switch/save/settings.ini`
+* Windows - `%APPDATA%\neo-fnfr\settings.ini`
+* macOS - `~/Library/Application Support/neo-fnfr/settings.ini`
+* Linux - `~/.local/share/love/neo-fnfr/settings.ini`
+* Nintendo Switch - `/switch/neo-fnfr/save/settings.ini`
 
 # FNFR Progress
 **Menus** - 50% Complete
