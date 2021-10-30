@@ -78,7 +78,6 @@ The settings file can be found in the following places on the following systems:
 **Game Engine** - 90% Complete
 * Engine is in close parity with the original game's Week 6 update.
 * No pause menu yet.
-* No "3-2-1-Go!" intro yet.
 
 **Weeks** - ~6/8 Complete
 * Tutorial + Weeks 1-5 are implemented.
