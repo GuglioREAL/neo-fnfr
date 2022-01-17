@@ -84,7 +84,6 @@ local weekMeta = {
 		{
 			"Cocoa",
 			"Eggnog",
-			"Eggnog Corrupt",
 			"Hallucination"
 		}
 	}

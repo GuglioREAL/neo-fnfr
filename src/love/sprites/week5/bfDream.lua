@@ -233,14 +233,14 @@ return graphics.newSprite(
 			{x = 1700, y = 2230, width = 415, height = 418, offsetX = -5, offsetY = 0, offsetWidth = 420, offsetHeight = 418} -- 229: BF idle dance0013
 		},
 		{
-			["down"] = {start = 1, stop = 30, speed = 24, offsetX = -4, offsetY = -24},
-			["miss down"] = {start = 31, stop = 59, speed = 24, offsetX = 6, offsetY = -11},
-			["left"] = {start = 60, stop = 73, speed = 24, offsetX = 20, offsetY = -4},
-			["miss left"] = {start = 74, stop = 107, speed = 24, offsetX = 20, offsetY = 8},
-			["right"] = {start = 108, stop = 130, speed = 24, offsetX = -41, offsetY = -3},
-			["miss right"] = {start = 131, stop = 176, speed = 24, offsetX = -41, offsetY = 10},
-			["up"] = {start = 177, stop = 191, speed = 24, offsetX = -21, offsetY = 13},
-			["miss up"] = {start = 192, stop = 215, speed = 24, offsetX = -18, offsetY = 11},
+			["down"] = {start = 1, stop = 30, speed = 24, offsetX = -17, offsetY = -6}, --
+			["miss down"] = {start = 31, stop = 59, speed = 24, offsetX = -11, offsetY = -11}, --
+			["left"] = {start = 60, stop = 73, speed = 24, offsetX = -5, offsetY = -3}, --
+			["miss left"] = {start = 74, stop = 107, speed = 24, offsetX = 2, offsetY = 7},
+			["right"] = {start = 108, stop = 130, speed = 24, offsetX = -53, offsetY = -5}, --
+			["miss right"] = {start = 131, stop = 176, speed = 24, offsetX = -54, offsetY = 10}, --
+			["up"] = {start = 177, stop = 191, speed = 24, offsetX = -31, offsetY = 17}, --
+			["miss up"] = {start = 192, stop = 215, speed = 24, offsetX = -33, offsetY = 14},--
 			["idle"] = {start = 216, stop = 229, speed = 24, offsetX = 0, offsetY = 0}
 		},
 		"idle",

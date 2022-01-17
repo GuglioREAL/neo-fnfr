@@ -142,7 +142,8 @@ return graphics.newSprite(
         ["right"] = {start = 76, stop = 91, speed = 24, offsetX = -37, offsetY = -11},
         ["right alt"] = {start = 92, stop = 106, speed = 24, offsetX = -37, offsetY = -10},
         ["up"] = {start = 107, stop = 120, speed = 24, offsetX = 0, offsetY = 11},
-        ["up alt"] = {start = 121, stop = 130, speed = 24, offsetX = 0, offsetY = 13}
+        ["up alt"] = {start = 121, stop = 130, speed = 24, offsetX = 0, offsetY = 13},
+		["k"] = {start = 121, stop = 134, speed = 24, offsetX = 0, offsetY = 13}
     },
     "idle",
     false

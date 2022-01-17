@@ -40,11 +40,10 @@ return {
 		stageFront = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/mainstage")))
 		buildings = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/buildings")))
 		CrowdRight = love.filesystem.load("sprites/week5/CrowdRight.lua")()
-		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")() -- WHY ARE YOU A NIL VALUE BRUH????? -- Update on this, turns out I wrote week1 and not week5...
+		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")()
 		CorruptCrowd = love.filesystem.load("sprites/week5/CorruptCrowd.lua")()
 		fireworksNEO = love.filesystem.load("sprites/week5/fireworksNEO.lua")()
 		fireworksPINK = love.filesystem.load("sprites/week5/fireworksPINK.lua")()
-
 
 		black = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/swagnothing")))
 		black.sizeX, black.sizeY = 2, 2
@@ -90,6 +89,42 @@ return {
 		elseif song == 2 then
 			inst = love.audio.newSource("music/week5/eggnog-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week5/eggnog-voices.ogg", "stream")
+			enemy2 = love.filesystem.load("sprites/week5/parentsDream.lua")()
+			enemy2.x, enemy2.y = enemy.x - 65, enemy.y
+
+			function enemy2Animate()
+				if enemy:getAnimName() == "left" then
+					enemy2:animate("left", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "right" then
+					enemy2:animate("right", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "up" then
+					enemy2:animate("up", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "down" then
+					enemy2:animate("down", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "idle" then
+					enemy2:animate("idle", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "left alt" then
+					enemy2:animate("left alt", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "right alt" then
+					enemy2:animate("right alt", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "up alt" then
+					enemy2:animate("up alt", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "down alt" then
+					enemy2:animate("down alt", false)
+					enemy:animate("k", false)
+				elseif enemy:getAnimName() == "idle" then
+					enemy2:animate("idle", false)
+					enemy:animate("k", false)
+				end
+			end
 		else
 			inst = love.audio.newSource("music/week5/cocoa-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week5/cocoa-voices.ogg", "stream")
@@ -118,12 +153,21 @@ return {
 		CrowdLeft:update(dt)
 		fireworksNEO:update(dt)
 		fireworksPINK:update(dt)
+		if song == 2 then
+			enemy2:update(dt)
+		end
+		if song == 3 then
+			CorruptCrowd:update(dt)
+		end
 
 		if song == 2 then
 			if musicTime >= 115508 then
 				if musicTime <= 115550 then
 					boyfriend:animate("passout", false)
 				end
+			end
+			if musicTime >= 89092 then
+				enemy2Animate()
 			end
 		end
 		
@@ -201,13 +245,27 @@ return {
 					stageFrontt:draw()
 				end
 				if song ~= 3 then
-					stageFront:draw()
+					if not corruptTime then
+						stageFront:draw()
+					end
+				end
+				if song == 2 then
+					if musicTime >= 89092 then
+						Skyy:draw()
+						stageFrontt:draw()
+					end
 				end
 
-				if song ~= 3 then
+				if song < 2 then
 					girlfriend:draw()
 					CrowdRight:draw()
 					CrowdLeft:draw()
+				elseif song == 2 then
+					if musicTime <= 89092 then
+						girlfriend:draw()
+						CrowdRight:draw()
+						CrowdLeft:draw()
+					end
 				elseif song == 3 then
 					CorruptCrowd:draw()
 					tables:draw()
@@ -216,8 +274,15 @@ return {
 			love.graphics.pop()
 			love.graphics.push()
 				love.graphics.translate(cam.x, cam.y)
-
-				enemy:draw()
+				if song ~= 2 then
+					enemy:draw()
+				elseif song == 2 then
+					if musicTime <= 89092 then
+						enemy:draw()
+					elseif musicTime >= 89092 then
+						enemy2:draw()
+					end
+				end
 				boyfriend:draw()
 
 			love.graphics.pop()
