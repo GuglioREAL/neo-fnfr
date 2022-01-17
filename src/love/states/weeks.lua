@@ -643,7 +643,9 @@ return {
 				self:safeAnimate(enemy, "idle", false, 2)
 			end
 			if spriteTimers[3] == 0 then
-				self:safeAnimate(boyfriend, "idle", false, 3)
+				if boyfriend:getAnimName() ~= "passout" then
+					self:safeAnimate(boyfriend, "idle", false, 3)
+				end
 			end
 		end
 

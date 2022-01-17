@@ -470,20 +470,20 @@ return graphics.newSprite(
 		{x = 4140, y = 3332, width = 814, height = 412, offsetX = -54, offsetY = -54, offsetWidth = 868, offsetHeight = 467} -- 466: Bf passing out0070
 	},
     {
-        ["dead"] = {start = 1, stop = 34, speed = 24, offsetX = 14, offsetY = -12}, --
-		["dead confirm"] = {start = 35, stop = 68, speed = 24, offsetX = 14, offsetY = 20}, --
+        ["dead"] = {start = 1, stop = 34, speed = 24, offsetX = 26, offsetY = -21}, --
+		["dead confirm"] = {start = 35, stop = 68, speed = 24, offsetX = 23, offsetY = 18}, --
 		--["hey"] = {start = 69, stop = 94, speed = 24, offsetX = 0, offsetY = 0}, -- No bf hey in neo mod lol
-		["down"] = {start = 69, stop = 98, speed = 24, offsetX = -4, offsetY = -24}, --
-		["miss down"] = {start = 99, stop = 127, speed = 24, offsetX = 6, offsetY = -11}, --
-		["left"] = {start = 128, stop = 142, speed = 24, offsetX = 20, offsetY = -4}, --
-		["miss left"] = {start = 143, stop = 176, speed = 24, offsetX = 20, offsetY = 8}, --
-		["right"] = {start = 177, stop = 238, speed = 24, offsetX = -41, offsetY = -3}, --
-		["miss right"] = {start = 239, stop = 284, speed = 24, offsetX = -41, offsetY = 10}, --
-		["up"] = {start = 285, stop = 299, speed = 24, offsetX = -21, offsetY = 13}, --
-		["miss up"] = {start = 300, stop = 323, speed = 24, offsetX = -18, offsetY = 11}, --
-		["dies"] = {start = 324, stop = 381, speed = 24, offsetX = 14, offsetY = -11}, --
+		["down"] = {start = 69, stop = 98, speed = 24, offsetX = 10, offsetY = -24}, -- 
+		["miss down"] = {start = 99, stop = 127, speed = 24, offsetX = 3, offsetY = -16}, -- 
+		["left"] = {start = 128, stop = 142, speed = 24, offsetX = 34, offsetY = -4}, --
+		["miss left"] = {start = 143, stop = 176, speed = 24, offsetX = 34, offsetY = -2}, -- 
+		["right"] = {start = 177, stop = 238, speed = 24, offsetX = -30, offsetY = -6}, --
+		["miss right"] = {start = 239, stop = 284, speed = 24, offsetX = -31, offsetY = 0}, --
+		["up"] = {start = 285, stop = 299, speed = 24, offsetX = -5, offsetY = 5}, --
+		["miss up"] = {start = 300, stop = 323, speed = 24, offsetX = -5, offsetY = 2}, --
+		["dies"] = {start = 324, stop = 381, speed = 24, offsetX = 26, offsetY = -20}, --
 		["idle"] = {start = 382, stop = 395, speed = 24, offsetX = 0, offsetY = 0}, --
-		["passout"] = {start = 396, stop = 466, speed = 24, offsetX = 0, offsetY = 0} --
+		["passout"] = {start = 396, stop = 466, speed = 24, offsetX = -226, offsetY = -41} --
 	},
     "idle",
     false
