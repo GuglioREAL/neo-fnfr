@@ -510,60 +510,65 @@ return {
 
 	-- Gross countdown script
 	setupCountdown = function(self)
-		lastReportedPlaytime = 0
-		musicTime = (240 / bpm) * -1000
+		if not sceneIsPlaying then
+			lastReportedPlaytime = 0
+			musicTime = (240 / bpm) * -1000
 
-		musicThres = 0
-		musicPos = 0
+			musicThres = 0
+			musicPos = 0
 
-		countingDown = true
-		countdownFade[1] = 0
-		audio.playSound(sounds.countdown.three)
-		Timer.after(
-			(60 / bpm),
-			function()
-				countdown:animate("ready")
-				countdownFade[1] = 1
-				audio.playSound(sounds.countdown.two)
-				Timer.tween(
-					(60 / bpm),
-					countdownFade,
-					{0},
-					"linear",
-					function()
-						countdown:animate("set")
-						countdownFade[1] = 1
-						audio.playSound(sounds.countdown.one)
-						Timer.tween(
-							(60 / bpm),
-							countdownFade,
-							{0},
-							"linear",
-							function()
-								countdown:animate("go")
-								countdownFade[1] = 1
-								audio.playSound(sounds.countdown.go)
-								Timer.tween(
-									(60 / bpm),
-									countdownFade,
-									{0},
-									"linear",
-									function()
-										countingDown = false
+			countingDown = true
+			countdownFade[1] = 0
+			audio.playSound(sounds.countdown.three)
+			Timer.after(
+				(60 / bpm),
+				function()
+					countdown:animate("ready")
+					countdownFade[1] = 1
+					audio.playSound(sounds.countdown.two)
+					Timer.tween(
+						(60 / bpm),
+						countdownFade,
+						{0},
+						"linear",
+						function()
+							countdown:animate("set")
+							countdownFade[1] = 1
+							audio.playSound(sounds.countdown.one)
+							Timer.tween(
+								(60 / bpm),
+								countdownFade,
+								{0},
+								"linear",
+								function()
+									countdown:animate("go")
+									countdownFade[1] = 1
+									audio.playSound(sounds.countdown.go)
+									Timer.tween(
+										(60 / bpm),
+										countdownFade,
+										{0},
+										"linear",
+										function()
+											countingDown = false
 
-										previousFrameTime = love.timer.getTime() * 1000
-										musicTime = 0
+											previousFrameTime = love.timer.getTime() * 1000
+											musicTime = 0
 
-										if inst then inst:play() end
-										voices:play()
-									end
-								)
-							end
-						)
-					end
-				)
-			end
-		)
+											if inst then inst:play() end
+											voices:play()
+										end
+									)
+								end
+							)
+						end
+					)
+				end
+			)
+		else
+			scene:play()
+			previousFrameTime = love.timer.getTime() * 1000
+		end
 	end,
 
 	safeAnimate = function(self, sprite, animName, loopAnim, timerID)

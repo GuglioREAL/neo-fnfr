@@ -34,16 +34,17 @@ return {
 
 		cam.sizeX, cam.sizeY = 0.8, 0.8
 		camScale.x, camScale.y = 0.8, 0.8
+		sceneIsPlaying = false
 
 		Skyy = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/sky2")))
 		stageFrontt = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/mainstagecorruption")))
 		tables = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/maintablescorruption")))
-		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")()
 		CorruptCrowd = love.filesystem.load("sprites/week5/CorruptCrowd.lua")()
 		Sky = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/sky")))
 		stageFront = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/mainstage")))
 		buildings = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/buildings")))
 		CrowdRight = love.filesystem.load("sprites/week5/CrowdRight.lua")()
+		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")()
 		
 		fireworksNEO = love.filesystem.load("sprites/week5/fireworksNEO.lua")()
 		fireworksPINK = love.filesystem.load("sprites/week5/fireworksPINK.lua")()
@@ -86,8 +87,12 @@ return {
 		
 		CrowdRight:animate("anim", true)
 		CrowdLeft:animate("anim", true)
+		if song == 4 then
+			scene = love.graphics.newVideo("videos/CutsceneFinal.ogv")
 
-		if song == 3 then
+			sceneIsPlaying = true
+			voices = love.audio.newSource("music/week5/eggnog-voices.ogg", "stream") -- just cuz fnfr cries when its not here :(
+		elseif song == 3 then
 			inst = love.audio.newSource("music/week5/hallucination-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week5/hallucination-voices.ogg", "stream")
 			
@@ -224,105 +229,129 @@ return {
 			end
 		end
 		
-		
-		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
-			if storyMode and song < 3 then
-				song = song + 1
+		if song == 4 and not countingDown then
+			if not scene:isPlaying() then
+				sceneIsPlaying = false
+                Gamestate.switch(menu)
+            end
+		elseif not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
+			if storyMode then
+				if song == 3 then 
+					song = 4
+					self:load()
+				end
+				if song < 3 then
+					song = song + 1
+					self:load()
+                elseif song ~= 4 then
+                    status.setLoading(true)
 
-				self:load()
-			else
-				status.setLoading(true)
+                    graphics.fadeOut(
+                        0.5,
+                        function()
+                            Gamestate.switch(menu)
 
-				graphics.fadeOut(
-					0.5,
-					function()
-						Gamestate.switch(menu)
+                            status.setLoading(false)
+                        end
+                    )
+                end
+            else
+                status.setLoading(true)
 
-						status.setLoading(false)
-					end
-				)
+                graphics.fadeOut(
+                    0.5,
+                    function()
+                        Gamestate.switch(menu)
+
+                        status.setLoading(false)
+                    end
+                )
 			end
 		end
 
-		weeks:updateUI(dt)
+		if song ~= 4 then weeks:updateUI(dt) end
+
 	end,
 
 	draw = function(self)
-		love.graphics.push()
-			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
-			love.graphics.scale(cam.sizeX, cam.sizeY)
-
+		if song ~= 4 then
 			love.graphics.push()
-				love.graphics.translate(cam.x * 0.9, cam.y * 0.9)
+				love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
+				love.graphics.scale(cam.sizeX, cam.sizeY)
+				love.graphics.push()
+					love.graphics.translate(cam.x * 0.9, cam.y * 0.9)
 
-				if song ~= 3 then
-					Sky:draw()
-					if song == 2 and musicTime <= 89092 then
-						fireworksPINK:draw()
-						fireworksNEO:draw()
-					else
-						fireworksPINK:draw()
-						fireworksNEO:draw()
+					if song ~= 3 then
+						Sky:draw()
+						if song == 2 and musicTime <= 89092 then
+							fireworksPINK:draw()
+							fireworksNEO:draw()
+						else
+							fireworksPINK:draw()
+							fireworksNEO:draw()
+						end
 					end
-				end
 
-				if song ~= 3 then
-					buildings:draw()
-				end
-				if song == 3 then
-					Skyy:draw()
-					stageFrontt:draw()
-				end
-				if song ~= 3 then
-					if not corruptTime then
-						stageFront:draw()
+					if song ~= 3 then
+						buildings:draw()
 					end
-				end
-				if song == 2 then
-					if musicTime >= 89092 then
+					if song == 3 then
 						Skyy:draw()
 						stageFrontt:draw()
 					end
-				end
+					if song ~= 3 then
+						if not corruptTime then
+							stageFront:draw()
+						end
+					end
+					if song == 2 then
+						if musicTime >= 89092 then
+							Skyy:draw()
+							stageFrontt:draw()
+						end
+					end
 
-				if song < 2 then
-					girlfriend:draw()
-					CrowdRight:draw()
-					CrowdLeft:draw()
-				elseif song == 2 then
-					if musicTime <= 89092 then
+					if song < 2 then
 						girlfriend:draw()
 						CrowdRight:draw()
 						CrowdLeft:draw()
+					elseif song == 2 then
+						if musicTime <= 89092 then
+							girlfriend:draw()
+							CrowdRight:draw()
+							CrowdLeft:draw()
+						end
+					elseif song == 3 then
+						CorruptCrowd:draw()
+						tables:draw()
 					end
-				elseif song == 3 then
-					CorruptCrowd:draw()
-					tables:draw()
-				end
 
-			love.graphics.pop()
-			love.graphics.push()
-				love.graphics.translate(cam.x, cam.y)
-				if song ~= 2 then
-					enemy:draw()
-				elseif song == 2 then
-					if musicTime <= 89092 then
+				love.graphics.pop()
+				love.graphics.push()
+					love.graphics.translate(cam.x, cam.y)
+					if song ~= 2 then
 						enemy:draw()
-					elseif musicTime >= 89092 then
-						enemy2:draw()
+					elseif song == 2 then
+						if musicTime <= 89092 then
+							enemy:draw()
+						elseif musicTime >= 89092 then
+							enemy2:draw()
+						end
 					end
-				end
-				boyfriend:draw()
+					boyfriend:draw()
 
+				love.graphics.pop()
+				love.graphics.push()
+					love.graphics.translate(cam.x * 1.1, cam.y * 1.1)
+
+				love.graphics.pop()
+				weeks:drawRating(0.9)
 			love.graphics.pop()
-			love.graphics.push()
-				love.graphics.translate(cam.x * 1.1, cam.y * 1.1)
 
-			love.graphics.pop()
-			weeks:drawRating(0.9)
-		love.graphics.pop()
-
-		weeks:drawUI()
+			weeks:drawUI()
+		else
+			love.graphics.draw(scene, 0, 0)
+		end
 	end,
 
 	leave = function(self)
@@ -336,7 +365,6 @@ return {
 		stageFrontt = nil
 		fireworksNEO = nil
 		fireworksPINK = nil
-
 
 		weeks:leave()
 	end
