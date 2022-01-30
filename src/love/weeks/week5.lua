@@ -32,27 +32,38 @@ return {
 		song = songNum
 		difficulty = songAppend
 
+		cam.sizeX, cam.sizeY = 0.8, 0.8
+		camScale.x, camScale.y = 0.8, 0.8
 
 		Skyy = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/sky2")))
 		stageFrontt = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/mainstagecorruption")))
 		tables = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/maintablescorruption")))
+		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")()
+		CorruptCrowd = love.filesystem.load("sprites/week5/CorruptCrowd.lua")()
 		Sky = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/sky")))
 		stageFront = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/mainstage")))
 		buildings = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/buildings")))
 		CrowdRight = love.filesystem.load("sprites/week5/CrowdRight.lua")()
-		CrowdLeft = love.filesystem.load("sprites/week5/CrowdLeft.lua")()
-		CorruptCrowd = love.filesystem.load("sprites/week5/CorruptCrowd.lua")()
+		
 		fireworksNEO = love.filesystem.load("sprites/week5/fireworksNEO.lua")()
 		fireworksPINK = love.filesystem.load("sprites/week5/fireworksPINK.lua")()
+
+		sounds["fireworks"] = {
+			love.audio.newSource("sounds/week5/firework1.ogg", "static"),
+			love.audio.newSource("sounds/week5/firework2.ogg", "static")
+		}
 
 		black = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/swagnothing")))
 		black.sizeX, black.sizeY = 2, 2
 
-		CrowdRight.x, CrowdRight.y = 300, 150
-		CrowdLeft.x, CrowdLeft.y = -550, 150
-		stageFront.sizeX, stageFront.sizeY = 0.9, 0.9
+		CrowdRight.x, CrowdRight.y = 300, 180
+		CrowdLeft.x, CrowdLeft.y = -550, 180
+		stageFront.sizeX, stageFront.sizeY = 1.1, 1.1
+		fireworksNEO.sizeX, fireworksNEO.sizeY = 1.2, 1.2
+		fireworksPINK.sizeX, fireworksPINK.sizeY = 1.2, 1.2
+		fireworksPINK.y, fireworksNEO.y = -75, -75
 
-		buildings.sizeX, buildings.sizeY = 0.9, 0.9
+		buildings.sizeX, buildings.sizeY = 1.1, 1.1
 		buildings.y = -100
 		girlfriend = love.filesystem.load("sprites/gf.lua")()
 		boyfriend = love.filesystem.load("sprites/bf.lua")()
@@ -170,6 +181,17 @@ return {
 				enemy2Animate()
 			end
 		end
+
+		if (song == 1 or song == 2) and musicThres ~= oldMusicThres and math.fmod(absMusicTime, 15000 * (love.math.random(17) + 7) / bpm) < 100 then
+			randomNumber = math.random(1,2)
+			if randomNumber == 1 then
+				fireworksNEO:animate("anim", false)
+			else
+				fireworksPINK:animate("anim", false)
+			end
+			audio.playSound(sounds["fireworks"][love.math.random(2)])
+			
+		end
 		
 		if song == 1 and song == 2 then
 			if health >= 80 then
@@ -235,6 +257,13 @@ return {
 
 				if song ~= 3 then
 					Sky:draw()
+					if song == 2 and musicTime <= 89092 then
+						fireworksPINK:draw()
+						fireworksNEO:draw()
+					else
+						fireworksPINK:draw()
+						fireworksNEO:draw()
+					end
 				end
 
 				if song ~= 3 then
